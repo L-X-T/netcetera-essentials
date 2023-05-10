@@ -20,7 +20,13 @@ import { EffectsModule } from '@ngrx/effects';
 import { FlightBookingEffects } from './+state/flight-booking.effects';
 
 @NgModule({
-  imports: [CommonModule, SharedModule, FlightBookingRoutingModule, StoreModule.forFeature(fromFlightBooking.flightBookingFeatureKey, fromFlightBooking.reducer), EffectsModule.forFeature([FlightBookingEffects])],
+  imports: [
+    CommonModule,
+    SharedModule,
+    FlightBookingRoutingModule,
+    StoreModule.forFeature(fromFlightBooking.flightBookingFeatureKey, fromFlightBooking.reducer),
+    EffectsModule.forFeature([FlightBookingEffects])
+  ],
   declarations: [
     FlightSearchComponent,
     FlightCardComponent,
