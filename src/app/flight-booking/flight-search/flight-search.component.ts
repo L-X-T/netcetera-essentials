@@ -5,14 +5,15 @@ import { FlightService } from './flight.service';
 import { Observable, Observer, Subject, Subscription } from 'rxjs';
 import { share, takeUntil } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
-import { SharedModule } from 'src/app/shared/shared.module';
+import { CityPipe } from '../../shared/pipes/city.pipe';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-flight-search',
   templateUrl: './flight-search.component.html',
   styleUrls: ['./flight-search.component.css'],
   standalone: true,
-  imports: [CommonModule, SharedModule]
+  imports: [CommonModule, FormsModule, CityPipe]
 })
 export class FlightSearchComponent implements OnDestroy {
   from = 'Graz';
