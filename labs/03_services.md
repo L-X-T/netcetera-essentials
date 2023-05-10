@@ -1,9 +1,10 @@
 # Angular Services
 
-- [Your first Angular service](#Your-first-Angular-service)
-  - [Create a FlightService](#Create-a-FlightService)
-  - [Bonus: Alternate Implementation *](#Bonus-Alternate-Implementation-)
-  - [Bonus: useFactory **](#Bonus-useFactory-)
+* [Angular Services](#angular-services)
+  * [Your first Angular service](#your-first-angular-service)
+    * [Create a FlightService](#create-a-flightservice)
+    * [Bonus: Alternate Implementation *](#bonus-alternate-implementation-)
+    * [Bonus: useFactory **](#bonus-usefactory-)
 
 ## Your first Angular service
 

@@ -1,11 +1,11 @@
 # Router
 
-- [Router](#Router)
-  - [Routing](#Routing)
-  - [Bonus: Routes with hash fragment and tracing *](#Routes-with-hash-fragment-and-tracing-)
-  - [Parametrizable Routes *](#Parametrizable-Routes-)
-  - [Bonus: Edit flights *](#Bonus-Edit-flights-)
-  - [Bonus: Programatic Routing *](#Bonus-Programatic-Routing-)
+* [Router](#router)
+  * [Routing](#routing)
+  * [Bonus: Routes with hash fragment and tracing *](#bonus-routes-with-hash-fragment-and-tracing-)
+  * [Parametrizable Routes](#parametrizable-routes)
+  * [Bonus: Edit flights *](#bonus-edit-flights-)
+  * [Bonus: Programatic Routing *](#bonus-programatic-routing-)
 
 ## Routing
 

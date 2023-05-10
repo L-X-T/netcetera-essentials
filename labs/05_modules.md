@@ -1,6 +1,7 @@
 # Angular Modules
 
-- [Work with modules](#work-with-modules)
+* [Angular Modules](#angular-modules)
+  * [Work with modules](#work-with-modules)
 
 ## Work with modules
 

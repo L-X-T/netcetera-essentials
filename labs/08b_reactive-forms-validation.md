@@ -1,13 +1,15 @@
 # Reactive Forms - Custom Validators
 
-- [Reactive Forms](#reactive-forms)
-  - [Custom Validators](#custom-validators)
-  - [Parameterized Validators](#parameterized-validators)
-  - [Multi-Field-Validators](#multi-field-validators)
-  - [Bonus: Load a Flight *](#bonus-load-a-flight-)
-  - [Bonus: Save a Flight *](#bonus-save-a-flight-)
+* [Reactive Forms - Custom Validators](#reactive-forms---custom-validators)
+  * [Custom Validators *](#custom-validators-)
+  * [Parametrizable Validators *](#parametrizable-validators-)
+  * [Async Validator **](#async-validator-)
+  * [Bonus: Parametrizable Async Validator **](#bonus-parametrizable-async-validator-)
+  * [Bonus: Multifield Validators *](#bonus-multifield-validators-)
+  * [Bonus: Load flight *](#bonus-load-flight-)
+  * [Bonus: Save flight *](#bonus-save-flight-)
 
-## Custom Validators
+## Custom Validators *
 
 In this exercise, you will write your own validator for your reactive form, which checks the cities entered against a hard-coded whitelist.
 
@@ -24,7 +26,7 @@ In this exercise, you will write your own validator for your reactive form, whic
 
     export function validateCity(c: AbstractControl): ValidationErrors | null {
         const validCities: string[] = ['Vienna', 'Cologne', 'Bern'];
-        if (c.value && validCities.indexOf(c.value) === -1) {
+        if (c.value && !validCities.includes(c.value)) {
             return {
                 city: {
                     actualValue: c.value,
@@ -73,7 +75,7 @@ In this exercise, you will write your own validator for your reactive form, whic
 
     ```html
     [...]
-    <div class="text-danger" *ngIf="editForm.controls.from?.hasError('city')">
+    <div class="text-danger" *ngIf="editForm.controls['from'].hasError('city')">
         ...city...
     </div>
     [...]
@@ -84,7 +86,7 @@ In this exercise, you will write your own validator for your reactive form, whic
 
 5. Test your solution
 
-## Parametrizable Validators
+## Parametrizable Validators *
 
 In this exercise, you will make the validator from the last exercise parameterizable so that it checks the entries against a whitelist that is passed as parameters.
 
@@ -99,7 +101,7 @@ In this exercise, you will make the validator from the last exercise parameteriz
     [...]
     export function validateCity (validCities: string[]): ValidatorFn {
         return (c: AbstractControl) => {
-            if (c.value && validCities.indexOf(c.value) === -1) {
+            if (c.value && !validCities.includes(c.value)) {
                 return {
                     city: {
                         actualValue: c.value,
@@ -136,7 +138,7 @@ In this exercise, you will make the validator from the last exercise parameteriz
 
 3. Test your solution.
 
-## Async Validator
+## Async Validator **
 
 In this lab we want to add an asynchronous validator for validating the ``from`` city field.
 
@@ -161,18 +163,18 @@ In this lab we want to add an asynchronous validator for validating the ``from``
 3. Add a pending flag to your `flight-edit.component.html` like this:
 
    ```html
-   <div *ngIf="editForm.controls.from.pending" class="text-danger">Checking city ...</div
+   <div *ngIf="editForm.controls['from'].pending" class="text-danger">Checking city ...</div
    ```
 
 4. Don't forget to display the error.
 
 5. Try out your application.
 
-## Bonus: Parametrizable Async Validator
+## Bonus: Parametrizable Async Validator **
 
 Now try to use the just created validator for both fields.
 
-## Bonus: Multifield Validators
+## Bonus: Multifield Validators *
 
 In this exercise you will write a multifield validator that ensures that a different value is recorded in the fields ``from`` and ``to``.
 
@@ -240,7 +242,7 @@ In this exercise you will write a multifield validator that ensures that a diffe
 
     ```html
     [...]
-    <div class="text-danger" *ngIf="editForm?.hasError('roundTrip')">
+    <div class="text-danger" *ngIf="editForm.hasError('roundTrip')">
         ...roundTrip...
     </div>
     [...]

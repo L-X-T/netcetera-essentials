@@ -1,9 +1,10 @@
 # Angular Components
 
-- [Components deep dive](#Components-deep-dive)
-  - [FlightCardComponent](#FlightCardComponent)
-  - [Bonus: FlightStatusToggleComponent **](Bonus-FlightStatusToggleComponent-)
-  - [Bonus: Content Projection **](Bonus-Content-Projection-)
+* [Angular Components](#angular-components)
+  * [Components deep dive](#components-deep-dive)
+    * [FlightCardComponent](#flightcardcomponent)
+    * [FlightStatusToggleComponent **](#flightstatustogglecomponent-)
+    * [Bonus: Content Projection **](#bonus-content-projection-)
 
 ## Components deep dive
 
@@ -173,7 +174,7 @@ In this exercise you will first create the FlightCardComponent shown. Then you w
 
 11. Test your solution.
 
-### Bonus: FlightStatusToggleComponent **
+### FlightStatusToggleComponent **
 
 Create a _StatusToggleComponent_ that receives the delayed flag of a flight via two-way binding and displays it as a link. Each time you click on this link, the status should be changed. The component should be able to be called in the template of the FlightCardComponent as follows:
 

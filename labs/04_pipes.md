@@ -1,11 +1,12 @@
 # Angular Pipes
 
-  - [Create your own pipe](#Create-your-own-pipe)
-  - [Bonus tasks on pipes](#Bonus-tasks-on-pipes)
-    - [Bonus: StatusColorPipe *](Bonus-StatusColorPipe-)
-    - [Bonus: StatusFilterPipe *](Bonus-StatusFilterPipe-)
-    - [Bonus: Service for a Pipe *](#Bonus-Service-for-a-Pipe-)
-    - [Bonus: Asynchronous service for a Pipe **](#Bonus-Asynchronous-service-for-a-Pipe-)
+* [Angular Pipes](#angular-pipes)
+  * [Create your own pipe](#create-your-own-pipe)
+  * [Bonus tasks on pipes](#bonus-tasks-on-pipes)
+    * [Bonus: StatusColorPipe *](#bonus-statuscolorpipe-)
+    * [Bonus: StatusFilterPipe *](#bonus-statusfilterpipe-)
+    * [Bonus: Service for a Pipe *](#bonus-service-for-a-pipe-)
+    * [Bonus: Asynchronous service for a Pipe **](#bonus-asynchronous-service-for-a-pipe-)
 
 ## Create your own pipe
 
@@ -22,7 +23,7 @@
 
     @Pipe({
       name: 'city',
-      pure: true
+      pure: true // actually not necessary since it's the default
     })
     export class CityPipe implements PipeTransform {
       transform(value: string, fmt: string): string {
@@ -91,9 +92,8 @@
     <summary>Show source</summary>
     <p>
 
-    ```TypeScript
+    ```HTML
     <div class="card">
-
       <table class="table table-contensed" *ngIf="flights.length > 0">
         <thead>
           <tr>
@@ -104,8 +104,7 @@
             <th></th>
           </tr>
         </thead>
-        <tr *ngFor="let f of flights"
-          [class.active]="f === selectedFlight">
+        <tr *ngFor="let f of flights" [class.active]="f === selectedFlight">
           <td>{{ f.id }}</td>
           <td>{{ f.from | city:'short' }}</td>
           <td>{{ f.to | city:'long' }}</td>
@@ -131,7 +130,7 @@
 Create a _StatusColorPipe_, which maps the property _delayed_ of the flight (true or false) to a color. Use this pipe together with the _ngStyle_ directive to assign this color to the CSS property _color_ of the output status:
 
 ```HTML
-<td [ngStyle]="{color: f.delayed | statusColor }">
+<td [style.color]="f.delayed | statusColor">
  {{ f.date | date:'dd.MM.yyyy HH:mm'}}
 </td>
 ```

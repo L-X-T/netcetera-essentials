@@ -1,12 +1,14 @@
 # Template Driven Forms - Custom Validators
 
-- [Angular Workshop: Template Driven Forms](#angular-workshop-template-driven-forms)
-  - [Custom Validator](#custom-validator)
-  - [Parameterized Validator](#parameterized-validator)
-  - [Bonus: Asynchronous Validator *](#bonus-asynchronous-validator-)
-  - [Bonus: Multi-Field-Validator *](#bonus-multi-field-validator-)
-  - [Bonus: Parameterized Multi-Field-Validator **](#bonus-parameterized-multi-field-validator-)
-  - [Bonus: Asynchronous Multi-Field-Validator ***](#bonus-asynchronous-multi-field-validator-)
+* [Template Driven Forms - Custom Validators](#template-driven-forms---custom-validators)
+  * [Custom Validator](#custom-validator)
+  * [Parameterizable Validator](#parameterizable-validator)
+  * [Bonus: Asynchronous Validator *](#bonus-asynchronous-validator-)
+  * [Bonus: Multifield Validator *](#bonus-multifield-validator-)
+  * [Bonus: Parametrizable Multifield Validator **](#bonus-parametrizable-multifield-validator-)
+  * [Bonus: Asynchronous Multifield Validator ***](#bonus-asynchronous-multifield-validator-)
+  * [Bonus: Formatted date in text field ***](#bonus-formatted-date-in-text-field-)
+  * [Bonus: Component for editing a date ***](#bonus-component-for-editing-a-date-)
 
 ## Custom Validator
 
@@ -61,7 +63,7 @@ You can use the following procedure as a guide:
         validCities = ['Graz', 'Wien', 'Hamburg', 'Berlin'];
 
         validate(c: AbstractControl): ValidationErrors | null {
-            if (c.value && this.validCities.indexOf(c.value) === -1) {
+            if (c.value && !this.validCities.includes(c.value)) {
                 return {
                     city: {
                         actualValue: c.value,
@@ -93,7 +95,7 @@ You can use the following procedure as a guide:
            pattern="[a-zA-ZäöüÄÖÜß ]*"
            city>
     [...]
-    <div *ngIf="flightSearchForm.controls.from.hasError('city')">
+    <div *ngIf="flightSearchForm.controls['from'].hasError('city')">
         ... city ...
     </div>
     [...]
@@ -128,7 +130,7 @@ You can follow the following procedure:
         @Input() city: string[] = [];
 
         validate(c: AbstractControl): ValidationErrors | null {
-            if (c.value && this.city.indexOf(c.value) === -1) {
+            if (c.value && !this.city.includes(c.value)) {
                 return {
                     city: {
                         actualCity: c.value,
@@ -260,7 +262,7 @@ You can use the following procedure as a guide:
            asyncCity
            city="Graz,Hamburg,Zürich">
     [...]
-    <div *ngIf="flightSearchForm.controls.from.hasError('asyncCity')">
+    <div *ngIf="flightSearchForm.controls['from'].hasError('asyncCity')">
         ... asyncCity ...
     </div>
     [...]
@@ -276,7 +278,7 @@ You can use the following procedure as a guide:
     <p>
 
     ```html
-    <div *ngIf="flightSearchForm.controls.from.pending">
+    <div *ngIf="flightSearchForm.controls['from'].pending">
         ... Executing Async Validator ...
     </div>
     [...]

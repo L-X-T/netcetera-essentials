@@ -1,13 +1,13 @@
 # Performance
 
-- [Performance](#performance)
-	- [Lazy Loading](#lazy-loading)
-		- [Implementing Lazy Loading for a feature module](#implementing-lazy-loading-for-a-feature-module)
-		- [Implementing Preloading](#implementing-preloading)
-		- [Bonus: Implementing a Custom Preloading Strategy **](#bonus-implementing-a-custom-preloading-strategy-)
-	- [Improving Data Binding Performance with OnPush](#improving-data-binding-performance-with-onpush)
-	- [Improving Startup Performance with Prod-Mode](#improving-startup-performance-with-prod-mode)
-	- [Bonus: Inspecting Bundles with webpack-bundle-analyzer](#bonus-inspecting-bundles-with-webpack-bundle-analyzer)
+* [Performance](#performance)
+  * [Lazy Loading](#lazy-loading)
+    * [Implementing Lazy Loading for a feature module](#implementing-lazy-loading-for-a-feature-module)
+    * [Implementing Preloading](#implementing-preloading)
+    * [Bonus: Implementing a Custom Preloading Strategy **](#bonus-implementing-a-custom-preloading-strategy-)
+  * [Improving Data Binding Performance with OnPush](#improving-data-binding-performance-with-onpush)
+  * [Improving Startup Performance with Prod-Mode](#improving-startup-performance-with-prod-mode)
+  * [Bonus: Inspecting Bundles with webpack-bundle-analyzer](#bonus-inspecting-bundles-with-webpack-bundle-analyzer)
 
 ## Lazy Loading
 

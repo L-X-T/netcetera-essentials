@@ -1,9 +1,9 @@
 # Selectors
 
-- [Selectors](#selectors)
-  - [Adding a first selector](#adding-a-first-selector)
-  - [Bonus: Using feature selectors *](#bonus-using-feature-selectors-)
-  - [Bonus: Using parameterized selectors *](#bonus-using-parameterized-selectors-)
+* [Selectors](#selectors)
+  * [Adding a first selector](#adding-a-first-selector)
+  * [Bonus: Using feature selectors *](#bonus-using-feature-selectors-)
+  * [Bonus: Using parameterized selectors *](#bonus-using-parameterized-selectors-)
 
 ## Adding a first selector
 

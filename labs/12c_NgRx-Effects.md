@@ -1,8 +1,8 @@
 # Managing side effects with @ngrx/effects
 
-- [Managing side effects with @ngrx/effects](#managing-side-effects-with-ngrxeffects)
-  - [Creating an Effect](#creating-an-effect)
-  - [Bonus: Error Handling](#bonus-error-handling)
+* [Managing side effects with @ngrx/effects](#managing-side-effects-with-ngrxeffects)
+  * [Creating an Effect](#creating-an-effect)
+  * [Bonus: Error Handling](#bonus-error-handling)
 
 In this exercise you will create an effect for loading flights.
 

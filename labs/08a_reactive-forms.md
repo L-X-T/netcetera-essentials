@@ -1,10 +1,10 @@
 # Reactive Forms
 
-- [Reactive Forms](#reactive-forms)
-	- [Edit flights](#edit-flights)
-	- [Using Angular Validators](#using-angular-validators)
+* [Reactive Forms](#reactive-forms)
+	* [Edit flights *](#edit-flights-)
+	* [Using Angular Validators *](#using-angular-validators-)
 
-## Edit flights
+## Edit flights *
 
 In this exercise, you will create a reactive form for editing flights.
 
@@ -195,6 +195,8 @@ Caution: This lab assumes you already know some basics and thus is a bit more di
     </p>
     </details>
 
+**Please note** that you should also add a subscription management (unsubscribe in ngOnDestroy) here.
+
 9. Now switch to the file ``flight-edit.component.html``. Create a form there that you can link to the ``FormGroups`` in the ``editForm`` property.
 
     <details>
@@ -239,7 +241,7 @@ Caution: This lab assumes you already know some basics and thus is a bit more di
 
 11. You might want to implement the save() function. Add a click handler on the button, inject the flight service and call it's save method and then show a success / or error message to the user.
 
-## Using Angular Validators
+## Using Angular Validators *
 
 In this exercise you will validate the _from_ field with the built-in validators ``required`` and ``minlength``.
 
@@ -273,7 +275,7 @@ In this exercise you will validate the _from_ field with the built-in validators
     ```TypeScript
     <input  formControlName="from">		
     [...]           
-    errors: {{ editForm.controls.from.errors | json }}
+    errors: {{ editForm.controls['from'].errors | json }}
     ```
 
     </p>
@@ -288,7 +290,7 @@ In this exercise you will validate the _from_ field with the built-in validators
     ```TypeScript
     <input  formControlName="from" [...] >		
     [...]
-    <div class="text-danger" *ngIf="editForm.controls.from.hasError('minlength')">		
+    <div class="text-danger" *ngIf="editForm.controls['from'].hasError('minlength')">		
         ...minlength...
     </div>		
     ```

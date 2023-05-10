@@ -1,12 +1,12 @@
 # Template Driven Forms
 
-- [Angular Workshop: Template Driven Forms](#angular-workshop-template-driven-forms)
-  - [Build-in Validators](#build-in-validators)
-  - [Bonus: Component to render Validation Errors *](#bonus-component-to-render-validation-errors-)
+* [Template Driven Forms](#template-driven-forms)
+  * [Using Angular Validators](#using-angular-validators)
+  * [Reusable component for displaying the validation errors *](#reusable-component-for-displaying-the-validation-errors-)
 
 ## Using Angular Validators
 
-In this exercise you will validate the entries in the search form of the ``FlightSearchComponent`` with the build-in validators ``required``, ``minlength``, ``maxlength`` and ``pattern`` and output any validation errors.
+In this exercise you will validate the entries in the search form of the ``FlightSearchComponent`` with the built-in validators ``required``, ``minlength``, ``maxlength`` and ``pattern`` and output any validation errors.
 
 Before we start, please ensure that ``noPropertyAccessFromIndexSignature`` is set to false, if that flag is in your ``tsconfig.json``. If the flag is not there at all, then your Angular project was created before Version 13 (strict mode) and then the default TypeScript value will be used which is false.
 
@@ -44,11 +44,11 @@ You can use the following procedure as a guide:
            maxlength="15"		
            pattern="[a-zA-ZäöüÄÖÜß ]*">		
 
-    <pre>{{ flightSearchForm.controls.from?.errors | json }}</pre>
+    <pre>{{ flightSearchForm.controls['from'].errors | json }}</pre>
 
     [...]
     <div class="text-danger"
-         *ngIf="flightSearchForm.controls.from?.hasError('minlength')">		
+         *ngIf="flightSearchForm.controls['from'].hasError('minlength')">		
         ... minlength ...
     </div>		
     [...]
@@ -61,7 +61,7 @@ You can use the following procedure as a guide:
 
 ## Reusable component for displaying the validation errors *
 
-In order not to have to query the validation errors in the same way over and over again for each input field, it is advisable to use a central component. This can receive the property ``errors`` of the validated ``FormControl``. For example, the expression ``flightSearchForm.controls.from?.errors`` returns the following object if both the validator ``minlength`` and a possibly self-written``city`` validator fail:
+In order not to have to query the validation errors in the same way over and over again for each input field, it is advisable to use a central component. This can receive the property ``errors`` of the validated ``FormControl``. For example, the expression ``flightSearchForm.controls['from'].errors`` returns the following object if both the validator ``minlength`` and a possibly self-written``city`` validator fail:
 
 ```json
 {
@@ -73,7 +73,7 @@ In order not to have to query the validation errors in the same way over and ove
 }
 ```
 
-Write a component that receives this ``errors`` object (``@Input() errors: any;``) and outputs an error message for each of the errors in it. To check whether this object exists and whether it indicates a specific error, *ngIf can be used:
+Write a component that receives this ``errors`` object (``@Input() errors?: ValidationErrors | null;``) and outputs an error message for each of the errors in it. To check whether this object exists and whether it indicates a specific error, *ngIf can be used:
 
 ```html
 <div *ngIf="errors && errors.required">
@@ -90,10 +90,13 @@ This component should be able to be called up as follows:
 ```html
 <div class="form-group">
     <label>From</label>
-    <input class="form-control" [(ngModel)]="from" name="from"
+    <input class="form-control" name="from"
+           [(ngModel)]="from"
            required minlength="3">
 
-    <app-flight-validation-errors [errors]="flightSearchForm.controls.from?.errors">
+    <app-flight-validation-errors [errors]="flightSearchForm.controls['from'].errors">
     </app-flight-validation-errors>
 </div>
 ```
+
+To make this component reusable for different fields, you might want to add another input for the field name like (``@Input() fieldName = 'Field';``).

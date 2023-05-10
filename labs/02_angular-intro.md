@@ -1,9 +1,10 @@
 # Angular Intro
 
-- [Your first Angular component](#Your-first-Angular-component)
-  - [Component for searching for flights](#Component-for-searching-for-flights)
-  - [Use the debugger](#Use-the-debugger)
-  - [Bonus: Edit flights *](#Bonus-Edit-flights-)
+* [Angular Intro](#angular-intro)
+  * [Your first Angular component](#your-first-angular-component)
+    * [Component for searching for flights](#component-for-searching-for-flights)
+    * [Use the debugger](#use-the-debugger)
+    * [Bonus: Edit flights *](#bonus-edit-flights-)
 
 ## Your first Angular component
 
