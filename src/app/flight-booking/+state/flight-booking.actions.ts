@@ -6,7 +6,7 @@ import { HttpErrorResponse } from '@angular/common/http';
   '[FlightBooking] Load FlightBookings'
 );*/
 
-export const loadFlights = createAction('[FlightBooking] Load Flights', props<{ from: string; to: string }>());
+export const loadFlights = createAction('[FlightBooking] Load Flights', props<{ from: string; to: string; urgent: boolean }>());
 export const loadFlightsError = createAction('[FlightBooking] Load Flights Error', props<{ err: HttpErrorResponse }>());
 export const loadFlightsSuccess = createAction('[FlightBooking] Load Flights Success', props<{ flights: Flight[] }>());
 
