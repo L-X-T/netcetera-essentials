@@ -5,7 +5,6 @@
   * [Setup State Management for a Feature Module](#setup-state-management-for-a-feature-module)
   * [Update a Flight](#update-a-flight)
   * [Bonus: Connecting the Router to the Store *](#bonus-connecting-the-router-to-the-store-)
-  * [Bonus: Using NgRx with module federation *](#bonus-using-ngrx-with-module-federation-)
   * [Bonus: Using Mutables with ngrx-immer *](#bonus-using-mutables-with-ngrx-immer-)
 
 ## Setup the store
