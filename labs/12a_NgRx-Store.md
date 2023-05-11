@@ -10,13 +10,15 @@
 
 ## Setup the store
 
-1. Open your ``package.json`` and find out, that some libraries from the ``@ngrx/*`` scope have been installed. One of them is ``@ngrx/schematics`` which extends the CLI by additional commands we are using in the next steps to generate boilerplate code.
+1. Open your ``package.json`` and find out, that the libraries from the ``@ngrx/*`` scope have not been installed yet. So, we need to add them in the correct version (15): ``npm i @ngrx/store@15 @ngrx/component@15 @ngrx/effects@15 @ngrx/router-store@15`` and ``npm i --save-dev @ngrx/schematics@15 @ngrx/store-devtools@15 nx@15``.
 
-2. To setup the ``StoreModule`` and all the needed imports, switch into the folder ``flight-app\src\app`` and run the following command.
+   One of them is ``@ngrx/schematics`` which extends the CLI by additional commands we are using in the next steps to generate boilerplate code.
+
+2. To setup the ``StoreModule`` and all the needed imports run the following command:
   
-    ``nx generate @ngrx/schematics:store AppState --root --statePath=+state --module=app.module.ts --project=flight-app``
+    ``ng g @ngrx/schematics:store --module=app.module.ts --root --name=AppState``
  
-3. Open the new `+state` folder and its ``index.ts`` file.
+3. Open the new `reducers` folder and its ``index.ts`` file.
 
 4. Open the ``app.module.ts`` file and inspect the current changes. You should find some additional imported modules.
 
@@ -31,23 +33,26 @@
     
     imports: [
         [...],
-        EffectsModule.forRoot([])
+        EffectsModule.forRoot([]) // no effects
     ];
     ```
    
 6. Check your ``AppModule`` of the ``flight-app``:
     
-    For the import of the ``StoreDevtoolsModule`` you might need to replace ``isDevMode()``, it should look like this:
+    For the import of the ``StoreDevtoolsModule`` you need to replace ``isDevMode()``, it should look like this:
 
     ```typescript
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     ```
 
+    ``environment`` needs to be imported from ``environment.ts``.
+
+
 ## Setup State Management for a Feature Module
 
-1. To setup the ``StoreModule`` for a feature module, switch into the folder ``flight-app\src\app`` and use the following command:
+1. Now, to setup the ``StoreModule`` for a feature module use the following command:
   
-    `nx generate @ngrx/schematics:feature flight-booking/+state/flight-booking --module=flight-booking/flight-booking.module.ts --creators`
+    ``ng g @ngrx/schematics:feature flight-booking/+state/flight-booking --module=flight-booking/flight-booking.module.ts --name=FlightBookingState``
     
     If you are asked whether to **wire up success and failure functions**, answer with "no". We'll do this by hand in this workshop. If you are asked for a prefix choose the default ``load``.
 
@@ -186,7 +191,7 @@
       // this.flightService.load(...)
 
       // new:
-      this.flightService.find(this.from, this.to, this.urgent).subscribe({
+      this.flightService.find(this.from, this.to).subscribe({
         next: (flights) => { 
           this.store.dispatch(flightsLoaded({ flights }));
         },
@@ -346,27 +351,6 @@ The ``StoreRouterConnectingModule`` helps to sync your router with the store. Th
     ```
 
 3. Start your application and navigate between the menu points. Open the Redux Devtools and replay all actions. Your should see, that the visited routes are replayed too.
-
-
-## Bonus: Using NgRx with module federation *
-
-If you're using **module federation** with our `@angular-architects/module-federation` package, then you can add NgRx (and RxJS) to the shared libraries in the webpack configs (for both shell & micro frontends):
-
-```typescript
-[...]
-
-   shared: share({
-      '@angular/core': { [...] },
-      [...],
-      '@ngrx/store': { [...] },
-      '@ngrx/effects': { [...] },
-      'rxjs': { [...] },
-   
-      ...sharedMappings.getDescriptors()
-   })
-
-[...]
-```
 
 ## Bonus: Using Mutables with ngrx-immer *
 

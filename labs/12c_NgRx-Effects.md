@@ -19,7 +19,7 @@ In this exercise you will create an effect for loading flights.
 
     export const loadFlights = createAction(
         '[FlightBooking] LoadFlights',
-        props<{ from: string, to: string, urgent: boolean }>()
+        props<{ from: string, to: string }>()
     );
     ```
 
@@ -39,7 +39,7 @@ In this exercise you will create an effect for loading flights.
         loadFlights$ = createEffect((): Observable<any> => 
             this.actions$.pipe(
                 ofType(loadFlights), 
-                switchMap((action) => this.flightService.find(action.from, action.to, action.urgent)),
+                switchMap((action) => this.flightService.find(action.from, action.to)),
                 map((flights) => flightsLoaded({ flights }))
             )
         );
@@ -53,7 +53,7 @@ In this exercise you will create an effect for loading flights.
 
     **Tipp:** Import the ``Actions`` type from the module ``@ngrx/effects``: 
     
-    ``import {Actions} from '@ngrx/effects';``
+    ``import { Actions } from '@ngrx/effects';``
 
 
 3. Open the file ``flight-search.component.ts``. Change the ``search`` method so that it just dispatches a ``loadFlights`` action.
@@ -71,14 +71,13 @@ In this exercise you will create an effect for loading flights.
       // New:
       this.store.dispatch(loadFlights({
           from: this.from, 
-          to: this.to, 
-          urgent: this.urgent
+          to: this.to
         }));
       
       // Old:
       /*
       this.flightService
-          .find(this.from, this.to, this.urgent)
+          .find(this.from, this.to)
           .subscribe(
             flights => { 
               this.store.dispatch(new flightsLoaded({flights}));
@@ -113,7 +112,7 @@ In this exercise you will create an effect for loading flights.
 2. It's probably a good idea to also rename your ``flightsLoaded`` action to ``loadFlightsSuccess`` to show the relation of these three actions:
 
   ```typescript
-   export const loadFlights = createAction('[FlightBooking] LoadFlights', props<{ from: string; to: string; urgent: boolean }>());
+   export const loadFlights = createAction('[FlightBooking] LoadFlights', props<{ from: string; to: string }>());
    export const loadFlightsError = createAction('[FlightBooking] LoadFlightsError', props<{ err: HttpErrorResponse }>());
    export const loadFlightsSuccess = createAction('[FlightBooking] LoadFlightsSuccess', props<{ flights: Flight[] }>());
   ```
@@ -127,7 +126,7 @@ In this exercise you will create an effect for loading flights.
     ```typescript
         loadFlightBookings$ = createEffect((): Observable<FlightBookingActions> => this.actions$.pipe(
             ofType(loadFlights),
-            switchMap((action) => this.flightService.find(action.from, action.to, action.urgent).pipe(
+            switchMap((action) => this.flightService.find(action.from, action.to).pipe(
                 map((flights) => loadFlightsSuccess({ flights })),
                 catchError((err) => of(loadFlightsError({ err })))
             )),
