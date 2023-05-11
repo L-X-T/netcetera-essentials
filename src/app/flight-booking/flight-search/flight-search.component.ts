@@ -8,7 +8,7 @@ import { share, takeUntil } from 'rxjs/operators';
 import { pattern } from '../../shared/global';
 import { FlightBookingAppState, flightBookingFeatureKey } from '../+state/flight-booking.reducer';
 import { Store } from '@ngrx/store';
-import { flightsLoaded, updateFlight } from '../+state/flight-booking.actions';
+import { loadFlights, updateFlight } from '../+state/flight-booking.actions';
 import { selectFlightsWithProps } from '../+state/flight-booking.selectors';
 
 @Component({
@@ -84,14 +84,21 @@ export class FlightSearchComponent implements OnInit, OnDestroy {
 
     // this.flights$.pipe(takeUntil(this.onDestroySubject)).subscribe(flightsObserver);
 
-    this.flightsSubscription = this.flightService.find(this.from, this.to).subscribe({
+    /*this.flightsSubscription = this.flightService.find(this.from, this.to).subscribe({
       next: (flights) => {
         this.store.dispatch(flightsLoaded({ flights }));
       },
       error: (err) => {
         console.error('error', err);
       }
-    });
+    });*/
+
+    this.store.dispatch(
+      loadFlights({
+        from: this.from,
+        to: this.to
+      })
+    );
   }
 
   private markFormGroupDirty(formGroup: FormGroup): void {
